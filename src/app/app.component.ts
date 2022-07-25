@@ -21,11 +21,19 @@ export class AppComponent implements OnInit {
       .subscribe((res: SuperHero[]) => (this.heroes = res));
   }
 
+  updatedHeroList(heroes: SuperHero[]) {
+    this.heroes = heroes;
+  }
+
   newHero() {
     this.heroToEdit = new SuperHero();
   }
 
   editHero(hero: SuperHero) {
     this.heroToEdit = hero;
+  }
+
+  deleteHero(hero: SuperHero) {
+    this.superHeroService.deleteSuperHero(hero).subscribe((heroes: SuperHero[]) => this.updatedHeroList(heroes));
   }
 }
