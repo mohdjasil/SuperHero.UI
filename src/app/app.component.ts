@@ -13,10 +13,19 @@ export class AppComponent implements OnInit {
 
   title = 'SuperHero.UI';
   heroes: SuperHero[] = [];
+  heroToEdit?: SuperHero;
 
   ngOnInit(): void {
     this.superHeroService
       .getSuperHeroes()
       .subscribe((res: SuperHero[]) => (this.heroes = res));
+  }
+
+  newHero() {
+    this.heroToEdit = new SuperHero();
+  }
+
+  editHero(hero: SuperHero) {
+    this.heroToEdit = hero;
   }
 }
